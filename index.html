@@ -2,57 +2,58 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- مهم برای موبایل -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <!-- مهم! -->
 <title>جمع‌آوری امضا</title>
 
 <!-- فونت فارسی Vazirmatn -->
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
-    background: linear-gradient(135deg, #5f2c82, #49a09d);
+    margin: 0;
+    padding: 0;
     font-family: 'Vazirmatn', sans-serif;
     direction: rtl;
-    color: #fff;
-    text-align: center;
-    padding: 30px 15px;
-    margin: 0;
+    background: linear-gradient(135deg, #5f2c82, #49a09d);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .container {
     width: 100%;
-    max-width: 480px;
-    margin: auto;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(14px);
-    padding: 25px;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 20px;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    animation: fadeIn 0.8s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    color: #fff;
+    margin: 15px;
   }
 
   h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    font-weight: 600;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0 0 15px;
   }
 
   p {
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: 1.6;
+    text-align: center;
     margin-bottom: 20px;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    text-align: right;
+    gap: 14px;
   }
 
   label {
@@ -82,7 +83,7 @@
 
   input[type="checkbox"] {
     accent-color: #ffdf5d;
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   button {
@@ -95,33 +96,25 @@
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     font-family: 'Vazirmatn', sans-serif;
     width: 100%;
   }
 
-  button:hover {
-    filter: brightness(1.08);
-    transform: scale(1.03);
+  button:active {
+    transform: scale(0.98);
   }
 
-  /* نسخه موبایل */
-  @media (max-width: 480px) {
-    body {
-      padding: 20px 10px;
-    }
-    .container {
-      padding: 20px;
-      width: 95%;
-    }
+  /* موبایل‌های خیلی کوچک */
+  @media (max-width: 360px) {
     h3 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
     p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
     button {
-      font-size: 1rem;
+      font-size: 0.95rem;
       padding: 12px;
     }
   }
