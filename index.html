@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>جمع‌آوری امضا</title>
+
+<!-- فونت فارسی Vazirmatn -->
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #5f2c82, #49a09d);
+    font-family: 'Vazirmatn', sans-serif;
+    direction: rtl;
+    color: #fff;
+    text-align: center;
+    padding: 50px 15px;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 480px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: right;
+  }
+
+  label {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 1px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255,255,255,0.9);
+    font-family: 'Vazirmatn', sans-serif;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+  }
+
+  input[type="checkbox"] {
+    accent-color: #ffdf5d;
+    transform: scale(1.3);
+  }
+
+  button {
+    background: linear-gradient(45deg, #ffdf5d, #ff914d);
+    color: #222;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-family: 'Vazirmatn', sans-serif; /* حالا فونت فارسی اعمال میشه */
+  }
+
+  button:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+  }
+
+  #result {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    min-height: 20px;
+  }
+
+  /* حالت موبایل */
+  @media (max-width: 500px) {
+    .container {
+      padding: 20px;
+    }
+    h3 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h3>📜 جمع‌آوری امضا برای درس DS</h3>
+    <p>
+      اگر متن نامه را مطالعه کرده اید و رضایت دارید که برای مدیر آموزش دانشگده ارسال بشه، لطفا نام و نام خانوادگیتون رو ثبت بکنید، با تشکر.
+    </p>
+
+    <form id="signatureForm">
+      <div>
+        <label>نام:</label>
+        <input type="text" name="firstName" placeholder="نام شما" required>
+      </div>
+
+      <div>
+        <label>نام خانوادگی:</label>
+        <input type="text" name="lastName" placeholder="نام خانوادگی شما" required>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" name="agree" required>
+        <span>متن نامه را خواندم و موافقم</span>
+      </div>
+
+      <button type="submit">✅ ثبت امضا</button>
+    </form>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.getElementById("signatureForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycbzCZlYZpZSKU-BmlK9IeRntIHzbdIUy3m1BNPgsfpxzEK6tl5Kf__TY9qI-7g3e2wWm/exec", {
+        method: "POST",
+        body: data
+      })
+      .then(res => res.text())
+      .then(msg => {
+        document.getElementById("result").innerText = msg;
+        form.reset();
+      })
+      .catch(err => {
+        document.getElementById("result").innerText = "❌ مشکلی پیش آمد!";
+        console.error(err);
+      });
+    });
+  </script>
+
+</body>
+</html>
